@@ -1,0 +1,7 @@
+com\locadora\iam\IamServiceApplication.class
+com\locadora\iam\entity\AuditLog.class
+com\locadora\iam\entity\Role$RoleBuilder.class
+com\locadora\iam\entity\AuditLog$AuditLogBuilder.class
+com\locadora\iam\entity\User.class
+com\locadora\iam\entity\Role.class
+com\locadora\iam\entity\User$UserBuilder.class
