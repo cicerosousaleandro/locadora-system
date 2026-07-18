@@ -1,0 +1,17 @@
+# Java/Maven  # Java/Maven 
+target/  target/ 
+*.class  *.class 
+*.jar 
+# IDE  # IDE 
+.idea/  .idea/ 
+.vscode/  .vscode/ 
+# Node/React 
+node_modules/  node_modules/ 
+dist/ 
+build/  build/ 
+.env 
+.env.local  .env.local 
+# Logs e Backups  # Logs e Backups 
+*.log  *.log 
+*.sql.gz 
+backups/ 
