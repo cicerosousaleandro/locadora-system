@@ -3,6 +3,7 @@ E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\config\Sec
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\AuthController.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\TestController.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\UserController.java
+E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\ChangePasswordRequest.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\LoginRequest.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\LoginResponse.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\UserCreateRequest.java

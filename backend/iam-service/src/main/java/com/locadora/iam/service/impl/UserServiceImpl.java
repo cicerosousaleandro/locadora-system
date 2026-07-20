@@ -1,5 +1,6 @@
 package com.locadora.iam.service.impl;
 
+import com.locadora.iam.dto.ChangePasswordRequest;
 import com.locadora.iam.dto.UserCreateRequest;
 import com.locadora.iam.dto.UserResponse;
 import com.locadora.iam.entity.Role;
@@ -51,17 +52,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserResponse createUserWithRoles(UserCreateRequest request) {
-        // Verificar se username já existe
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username já está em uso: " + request.getUsername());
         }
 
-        // Verificar se email já existe
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email já está em uso: " + request.getEmail());
         }
 
-        // Criar usuário
         User user = User.builder()
                 .username(request.getUsername())
                 .name(request.getName())
@@ -70,7 +68,6 @@ public class UserServiceImpl implements UserService {
                 .enabled(true)
                 .build();
 
-        // Adicionar roles se fornecidas
         if (request.getRoles() != null && !request.getRoles().isEmpty()) {
             Set<Role> roles = request.getRoles().stream()
                     .map(roleName -> roleRepository.findByName(roleName)
@@ -78,7 +75,6 @@ public class UserServiceImpl implements UserService {
                     .collect(Collectors.toSet());
             user.setRoles(roles);
         } else {
-            // Role padrão: ROLE_CAIXA
             Role defaultRole = roleRepository.findByName(Role.ROLE_CAIXA)
                     .orElseThrow(() -> new RuntimeException("Role padrão ROLE_CAIXA não encontrada"));
             user.setRoles(Set.of(defaultRole));
@@ -86,7 +82,6 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(user);
 
-        // Converter para DTO de resposta
         return convertToResponse(savedUser);
     }
 
@@ -103,7 +98,20 @@ public class UserServiceImpl implements UserService {
                 .map(this::convertToResponse);
     }
 
-    // Método auxiliar para converter Entity → DTO
+    @Override
+    @Transactional
+    public void changePassword(String username, ChangePasswordRequest request) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new RuntimeException("A senha atual está incorreta");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+    }
+
     private UserResponse convertToResponse(User user) {
         return UserResponse.builder()
                 .id(user.getId())

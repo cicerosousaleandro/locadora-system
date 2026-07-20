@@ -1,5 +1,6 @@
 package com.locadora.iam.service;
 
+import com.locadora.iam.dto.ChangePasswordRequest;
 import com.locadora.iam.dto.LoginRequest;
 import com.locadora.iam.dto.LoginResponse;
 import com.locadora.iam.dto.UserCreateRequest;
@@ -18,8 +19,9 @@ public interface UserService {
     Role createRole(Role role);
     Optional<Role> findByName(String name);
 
-    // Novos métodos para gerenciamento de usuários
     UserResponse createUserWithRoles(UserCreateRequest request);
     List<UserResponse> getAllUsers();
     Optional<UserResponse> getUserById(Long id);
+
+    void changePassword(String username, ChangePasswordRequest request);
 }
