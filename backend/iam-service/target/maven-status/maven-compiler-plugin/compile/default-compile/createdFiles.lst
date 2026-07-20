@@ -16,6 +16,7 @@ com\locadora\iam\security\JwtService.class
 com\locadora\iam\dto\LoginResponse$LoginResponseBuilder.class
 com\locadora\iam\config\DataInitializer.class
 com\locadora\iam\dto\UserResponse$UserResponseBuilder.class
+com\locadora\iam\dto\UserUpdateRequest.class
 com\locadora\iam\entity\Role.class
 com\locadora\iam\entity\User$UserBuilder.class
 com\locadora\iam\IamServiceApplication.class

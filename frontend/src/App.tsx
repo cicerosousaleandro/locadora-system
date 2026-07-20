@@ -1,34 +1,40 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Login } from './pages/Login';
+import { Users } from './pages/Users';
+import { Navbar } from './components/Navbar';
 
-// Componente que protege rotas: só deixa passar se estiver logado
-function ProtectedRoute({ children }: { children: JSX.Element }) {
+// Layout para rotas protegidas (inclui a Navbar)
+function ProtectedLayout({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuth();
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-  return children;
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <Navbar />
+      <main className="pt-6">
+        {children}
+      </main>
+    </div>
+  );
 }
 
 // Tela interna simples (Dashboard)
 function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md border border-slate-200">
-        <div className="flex justify-between items-start mb-6">
-          <div>
-            <h1 className="text-2xl font-bold text-primary-900">Bem-vindo, {user?.username}!</h1>
-            <p className="text-slate-600 mt-1">Seus níveis de acesso: <span className="font-mono text-sm bg-slate-100 px-2 py-1 rounded">{user?.roles.join(', ')}</span></p>
-          </div>
-          <button onClick={logout} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-medium text-sm">
-            Sair do Sistema
-          </button>
-        </div>
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-200">
+        <h1 className="text-2xl font-bold text-primary-900 mb-2">Bem-vindo ao Painel, {user?.username}!</h1>
+        <p className="text-slate-600 mb-6">Seus níveis de acesso: <span className="font-mono text-sm bg-slate-100 px-2 py-1 rounded text-primary-700">{user?.roles.join(', ')}</span></p>
 
-        <div className="p-4 bg-primary-50 border border-primary-100 rounded-lg text-primary-800 text-sm">
-          🚀 O sistema frontend está conectado com sucesso ao seu backend Java (iam-service) via JWT!
+        <div className="p-4 bg-primary-50 border border-primary-100 rounded-lg text-primary-800 text-sm flex items-start gap-3">
+          <span className="text-xl">🚀</span>
+          <div>
+            <p className="font-semibold">Sistema Integrado com Sucesso!</p>
+            <p className="mt-1 text-primary-700">O frontend está se comunicando com o backend Java (iam-service) de forma segura via JWT. Use o menu "Usuários" para testar o CRUD completo.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -45,9 +51,18 @@ export default function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
+              <ProtectedLayout>
                 <Dashboard />
-              </ProtectedRoute>
+              </ProtectedLayout>
+            }
+          />
+
+          <Route
+            path="/users"
+            element={
+              <ProtectedLayout>
+                <Users />
+              </ProtectedLayout>
             }
           />
 

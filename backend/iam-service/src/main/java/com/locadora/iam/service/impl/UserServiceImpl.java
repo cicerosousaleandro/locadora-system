@@ -3,6 +3,7 @@ package com.locadora.iam.service.impl;
 import com.locadora.iam.dto.ChangePasswordRequest;
 import com.locadora.iam.dto.UserCreateRequest;
 import com.locadora.iam.dto.UserResponse;
+import com.locadora.iam.dto.UserUpdateRequest;
 import com.locadora.iam.entity.Role;
 import com.locadora.iam.entity.User;
 import com.locadora.iam.repository.RoleRepository;
@@ -110,6 +111,52 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
+
+        if (user.getUsername().equals("admin")) {
+            throw new RuntimeException("Não é possível excluir o usuário administrador principal.");
+        }
+
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public UserResponse updateUser(Long id, UserUpdateRequest request) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com ID: " + id));
+
+        // Verificar se email já existe (mas não para o próprio usuário)
+        if (!user.getEmail().equals(request.getEmail()) && userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email já está em uso: " + request.getEmail());
+        }
+
+        // Atualizar campos
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+
+        if (request.getEnabled() != null) {
+            user.setEnabled(request.getEnabled());
+        }
+
+        // Atualizar roles se fornecidas
+        if (request.getRoles() != null && !request.getRoles().isEmpty()) {
+            Set<Role> roles = request.getRoles().stream()
+                    .map(roleName -> roleRepository.findByName(roleName)
+                            .orElseThrow(() -> new RuntimeException("Role não encontrada: " + roleName)))
+                    .collect(Collectors.toSet());
+            user.setRoles(roles);
+        }
+
+        User updatedUser = userRepository.save(user);
+
+        return convertToResponse(updatedUser);
     }
 
     private UserResponse convertToResponse(User user) {

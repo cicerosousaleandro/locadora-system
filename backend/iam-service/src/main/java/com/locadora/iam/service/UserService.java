@@ -5,6 +5,7 @@ import com.locadora.iam.dto.LoginRequest;
 import com.locadora.iam.dto.LoginResponse;
 import com.locadora.iam.dto.UserCreateRequest;
 import com.locadora.iam.dto.UserResponse;
+import com.locadora.iam.dto.UserUpdateRequest;
 import com.locadora.iam.entity.Role;
 import com.locadora.iam.entity.User;
 
@@ -24,4 +25,6 @@ public interface UserService {
     Optional<UserResponse> getUserById(Long id);
 
     void changePassword(String username, ChangePasswordRequest request);
+    void deleteUserById(Long id);
+    UserResponse updateUser(Long id, UserUpdateRequest request);
 }

@@ -3,6 +3,7 @@ package com.locadora.iam.controller;
 import com.locadora.iam.dto.ChangePasswordRequest;
 import com.locadora.iam.dto.UserCreateRequest;
 import com.locadora.iam.dto.UserResponse;
+import com.locadora.iam.dto.UserUpdateRequest;
 import com.locadora.iam.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,16 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserResponse> updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserUpdateRequest request) {
+
+        UserResponse updatedUser = userService.updateUser(id, request);
+        return ResponseEntity.ok(updatedUser);
+    }
+
     @PutMapping("/me/password")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Void> changePassword(
@@ -53,5 +64,12 @@ public class UserController {
 
         userService.changePassword(userDetails.getUsername(), request);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
     }
 }
