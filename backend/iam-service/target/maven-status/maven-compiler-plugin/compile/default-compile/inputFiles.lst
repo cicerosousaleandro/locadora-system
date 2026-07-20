@@ -1,8 +1,12 @@
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\config\DataInitializer.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\config\SecurityConfig.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\AuthController.java
+E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\TestController.java
+E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\controller\UserController.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\LoginRequest.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\LoginResponse.java
+E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\UserCreateRequest.java
+E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\dto\UserResponse.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\entity\AuditLog.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\entity\Role.java
 E:\locadora-system\backend\iam-service\src\main\java\com\locadora\iam\entity\User.java
