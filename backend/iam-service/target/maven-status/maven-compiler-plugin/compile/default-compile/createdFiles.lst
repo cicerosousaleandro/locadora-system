@@ -4,7 +4,6 @@ com\locadora\iam\entity\Role$RoleBuilder.class
 com\locadora\iam\security\UserDetailsServiceImpl.class
 com\locadora\iam\repository\UserRepository.class
 com\locadora\iam\service\impl\UserServiceImpl.class
-com\locadora\iam\config\SecurityConfig.class
 com\locadora\iam\dto\ChangePasswordRequest.class
 com\locadora\iam\entity\AuditLog$AuditLogBuilder.class
 com\locadora\iam\service\impl\AuthServiceImpl.class
