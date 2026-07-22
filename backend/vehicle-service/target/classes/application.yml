@@ -18,5 +18,5 @@ server:
   port: 8082
 
 jwt:
-  secret: locadora-system-super-secret-key-min-32-characters
+  secret: locadora-system-secret-key-min-32-chars
   expiration: 86400000
