@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Login } from './pages/Login';
 import { Users } from './pages/Users';
+import { Vehicles } from './pages/Vehicles';
 import { Navbar } from './components/Navbar';
 
-// Layout para rotas protegidas (inclui a Navbar)
 function ProtectedLayout({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuth();
   if (!isAuthenticated) {
@@ -20,7 +20,6 @@ function ProtectedLayout({ children }: { children: JSX.Element }) {
   );
 }
 
-// Tela interna simples (Dashboard)
 function Dashboard() {
   const { user } = useAuth();
   return (
@@ -33,7 +32,7 @@ function Dashboard() {
           <span className="text-xl">🚀</span>
           <div>
             <p className="font-semibold">Sistema Integrado com Sucesso!</p>
-            <p className="mt-1 text-primary-700">O frontend está se comunicando com o backend Java (iam-service) de forma segura via JWT. Use o menu "Usuários" para testar o CRUD completo.</p>
+            <p className="mt-1 text-primary-700">O frontend está se comunicando com o backend Java (iam-service e vehicle-service) de forma segura via JWT.</p>
           </div>
         </div>
       </div>
@@ -48,23 +47,9 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedLayout>
-                <Dashboard />
-              </ProtectedLayout>
-            }
-          />
-
-          <Route
-            path="/users"
-            element={
-              <ProtectedLayout>
-                <Users />
-              </ProtectedLayout>
-            }
-          />
+          <Route path="/dashboard" element={<ProtectedLayout><Dashboard /></ProtectedLayout>} />
+          <Route path="/users" element={<ProtectedLayout><Users /></ProtectedLayout>} />
+          <Route path="/vehicles" element={<ProtectedLayout><Vehicles /></ProtectedLayout>} />
 
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>

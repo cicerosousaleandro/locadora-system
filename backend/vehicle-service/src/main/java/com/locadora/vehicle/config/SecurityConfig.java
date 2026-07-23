@@ -47,8 +47,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Permite qualquer origem (para desenvolvimento)
-        configuration.setAllowedOrigins(List.of("*"));
+
+        // 🚨 CORREÇÃO AQUI: Usar allowedOriginPatterns em vez de allowedOrigins
+        // Isso permite "*" mesmo com allowCredentials(true) no Spring Boot 3
+        configuration.setAllowedOriginPatterns(List.of("*"));
+
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
