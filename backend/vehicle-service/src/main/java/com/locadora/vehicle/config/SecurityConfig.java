@@ -48,8 +48,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 🚨 CORREÇÃO AQUI: Usar allowedOriginPatterns em vez de allowedOrigins
-        // Isso permite "*" mesmo com allowCredentials(true) no Spring Boot 3
+
         configuration.setAllowedOriginPatterns(List.of("*"));
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

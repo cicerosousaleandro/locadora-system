@@ -23,4 +23,14 @@ const setupInterceptors = (instance: any) => {
 setupInterceptors(api);
 setupInterceptors(vehicleApi);
 
+// Métodos auxiliares para Vehicles
+export const vehicleService = {
+  getAllVehicles: () => vehicleApi.get('/api/vehicles'),
+  getVehicleById: (id: number) => vehicleApi.get(`/api/vehicles/${id}`),
+  createVehicle: (data: any) => vehicleApi.post('/api/vehicles', data),
+  updateVehicle: (id: number, data: any) => vehicleApi.put(`/api/vehicles/${id}`, data),
+  deleteVehicle: (id: number) => vehicleApi.delete(`/api/vehicles/${id}`),
+  getAllCategories: () => vehicleApi.get('/api/categories'),
+};
+
 export default api;
