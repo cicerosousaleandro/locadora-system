@@ -1,0 +1,3 @@
+com\locadora\vehicle\security\JwtServiceTest.class
+com\locadora\vehicle\service\impl\VehicleServiceImplTest.class
+com\locadora\vehicle\service\impl\CategoryServiceImplTest.class
