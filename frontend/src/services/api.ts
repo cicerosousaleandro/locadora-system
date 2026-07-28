@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const vehicleApi = axios.create({
-  baseURL: 'http://localhost:8082',
+  baseURL: 'http://localhost:8083',
 });
 
 const setupInterceptors = (instance: any) => {
@@ -23,7 +23,7 @@ const setupInterceptors = (instance: any) => {
 setupInterceptors(api);
 setupInterceptors(vehicleApi);
 
-// Métodos auxiliares para Vehicles
+
 export const vehicleService = {
   getAllVehicles: () => vehicleApi.get('/api/vehicles'),
   getVehicleById: (id: number) => vehicleApi.get(`/api/vehicles/${id}`),
