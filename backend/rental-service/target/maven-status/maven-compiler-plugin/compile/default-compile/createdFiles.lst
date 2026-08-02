@@ -1,0 +1,11 @@
+com\locadora\rental\client\VehicleClient.class
+com\locadora\rental\service\RentalService.class
+com\locadora\rental\dto\RentalResponse.class
+com\locadora\rental\entity\Rental.class
+com\locadora\rental\controller\RentalController.class
+com\locadora\rental\enums\RentalStatus.class
+com\locadora\rental\repository\RentalRepository.class
+com\locadora\rental\dto\VehicleDTO.class
+com\locadora\rental\RentalServiceApplication.class
+com\locadora\rental\dto\RentalRequest.class
+com\locadora\rental\entity\Rental$RentalBuilder.class

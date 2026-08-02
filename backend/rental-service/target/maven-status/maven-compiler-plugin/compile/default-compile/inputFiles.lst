@@ -1,0 +1,10 @@
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\client\VehicleClient.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\controller\RentalController.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\dto\RentalRequest.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\dto\RentalResponse.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\dto\VehicleDTO.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\entity\Rental.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\enums\RentalStatus.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\RentalServiceApplication.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\repository\RentalRepository.java
+E:\locadora-system\backend\rental-service\src\main\java\com\locadora\rental\service\RentalService.java
